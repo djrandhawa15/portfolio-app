@@ -20,7 +20,7 @@ export default function ProjectDetailView({ project }) {
         {/* Project Card */}
         <Card className="overflow-hidden">
           {/* Project Image */}
-          <div className="w-full h-64 md:h-96 relative bg-zinc-100 dark:bg-zinc-800">
+          <div className="w-full h-48 sm:h-64 md:h-96 relative bg-zinc-100 dark:bg-zinc-800">
             <Image
               src={project.image}
               alt={project.title}
@@ -30,9 +30,9 @@ export default function ProjectDetailView({ project }) {
           </div>
 
           <CardHeader>
-            <div className="flex justify-between items-start">
-              <CardTitle className="text-3xl md:text-4xl">{project.title}</CardTitle>
-              <Button asChild size="sm">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+              <CardTitle className="text-2xl sm:text-3xl md:text-4xl">{project.title}</CardTitle>
+              <Button asChild size="sm" className="w-full sm:w-auto">
                 <a href={project.link} target="_blank" rel="noreferrer">
                   <ExternalLink className="w-4 h-4 mr-2" />
                   Visit
@@ -44,22 +44,22 @@ export default function ProjectDetailView({ project }) {
           <CardContent className="space-y-6">
             {/* Description */}
             <div>
-              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
+              <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
                 Description
               </h3>
-              <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed">
                 {project.description}
               </p>
             </div>
 
             {/* Keywords/Tags */}
             <div>
-              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
+              <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
                 Technologies & Keywords
               </h3>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {project.keywords.map((keyword) => (
-                  <Badge key={keyword} variant="secondary" className="text-sm">
+                  <Badge key={keyword} variant="secondary" className="text-xs sm:text-sm">
                     {keyword}
                   </Badge>
                 ))}

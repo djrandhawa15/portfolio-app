@@ -78,9 +78,9 @@ export default function NewProjectForm() {
   }
 
   return (
-    <div className="bg-white dark:bg-zinc-950 rounded-lg border border-zinc-200 dark:border-zinc-800 p-6 md:p-8">
+    <div className="bg-white dark:bg-zinc-950 rounded-lg border border-zinc-200 dark:border-zinc-800 p-4 sm:p-6 md:p-8">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
           {/* Title Field */}
           <FormField
             control={form.control}
@@ -230,11 +230,11 @@ export default function NewProjectForm() {
           />
 
           {/* Submit Button */}
-          <div className="flex gap-4 pt-4">
-            <Button type="submit" disabled={isSubmitting} className="flex-1">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
+            <Button type="submit" disabled={isSubmitting} className="flex-1 w-full">
               {isSubmitting ? "Creating..." : "Create Project"}
             </Button>
-            <Button type="button" variant="outline" asChild>
+            <Button type="button" variant="outline" asChild className="w-full sm:w-auto">
               <Link href="/projects">Cancel</Link>
             </Button>
           </div>

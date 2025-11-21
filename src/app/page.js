@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { Mail, ExternalLink } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import GitHubCalendar from "@/components/github-calendar";
 
 export default function Home() {
   const projects = [
@@ -92,6 +94,16 @@ export default function Home() {
         </div>
       </section>
 
+      {/* GitHub Activity Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-8 text-center">
+            GitHub Activity
+          </h2>
+          <GitHubCalendar username="your-github-username" />
+        </div>
+      </section>
+
       {/* Projects Section */}
       <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
@@ -164,10 +176,10 @@ export default function Home() {
             Feel free to reach out if you'd like to work together!
           </p>
           <Button asChild size="lg" className="gap-2">
-            <a href="mailto:dilraj.randhawa@email.com">
+            <Link href="/contact">
               <Mail className="w-4 h-4" />
               Get in Touch
-            </a>
+            </Link>
           </Button>
         </div>
       </section>

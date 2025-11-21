@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -47,6 +48,8 @@ export default function NewProjectForm() {
   async function onSubmit(values) {
     setIsSubmitting(true);
 
+    const loadingToast = toast.loading("Creating project...");
+
     try {
       const formData = new FormData();
       formData.append("title", values.title);
@@ -62,16 +65,25 @@ export default function NewProjectForm() {
 
       const result = await response.json();
 
+      toast.dismiss(loadingToast);
+
       if (result.ok) {
-        alert("Project created successfully!");
+        toast.success("Project received successfully", {
+          description: "Your project has been created.",
+        });
         form.reset();
         router.push("/projects");
       } else {
-        alert("Error creating project: " + (result.error || "Unknown error"));
+        toast.error("Error creating project", {
+          description: result.error || "Unknown error occurred.",
+        });
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("Error submitting form. Please try again.");
+      toast.dismiss(loadingToast);
+      toast.error("Error submitting form", {
+        description: "Please try again later.",
+      });
     } finally {
       setIsSubmitting(false);
     }

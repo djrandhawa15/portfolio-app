@@ -34,7 +34,7 @@ export default function MyNavBar() {
             <Link href="/#skills" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors">
               Skills
             </Link>
-            <Link href="/#contact" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors">
+            <Link href="/contact" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors">
               Contact
             </Link>
           </div>
@@ -75,7 +75,7 @@ export default function MyNavBar() {
                 Skills
               </Link>
               <Link
-                href="/#contact"
+                href="/contact"
                 className="block text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors py-2"
                 onClick={closeMenu}
               >

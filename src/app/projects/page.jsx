@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { createSlug } from "@/lib/utils";
+import { auth0 } from "@/lib/auth0";
+import { fetchProjects } from "@/lib/db";
 import ProjectCard from "@/components/project-card";
 
 export default async function ProjectsPage() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/projects`, { cache: "no-store" });
-  const { projects } = await res.json();
+  const session = await auth0.getSession();
+  const projects = await fetchProjects();
 
   return (
     <div className="min-h-screen bg-linear-to-br from-zinc-50 to-zinc-100 dark:from-zinc-950 dark:to-zinc-900 pt-20 sm:pt-24 pb-8 sm:pb-12">
@@ -19,15 +21,17 @@ export default async function ProjectsPage() {
               Explore my portfolio of web development projects
             </p>
           </div>
-          <Button asChild className="w-full sm:w-auto">
-            <Link href="/projects/new">New Project</Link>
-          </Button>
+          {session?.user && (
+            <Button asChild className="w-full sm:w-auto">
+              <Link href="/projects/new">New Project</Link>
+            </Button>
+          )}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {projects.map((p) => {
             const slug = createSlug(p.title);
-            return <ProjectCard key={slug} project={p} slug={slug} />;
+            return <ProjectCard key={p.id} project={p} slug={slug} session={session} />;
           })}
         </div>
       </div>

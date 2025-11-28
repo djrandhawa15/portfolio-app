@@ -3,7 +3,7 @@
 import Script from "next/script";
 import { Github } from "lucide-react";
 
-export default function GitHubCalendar({ username = "your-github-username" }) {
+export default function GitHubCalendar({ username = "djrandhawa15" }) {
   return (
     <div className="bg-white dark:bg-zinc-950 rounded-lg border border-zinc-200 dark:border-zinc-800 p-6">
       <div className="flex items-center gap-3 mb-4">

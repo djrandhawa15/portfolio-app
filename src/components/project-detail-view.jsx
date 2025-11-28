@@ -3,9 +3,9 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExternalLink, ArrowLeft } from "lucide-react";
+import { ExternalLink, ArrowLeft, Pencil } from "lucide-react";
 
-export default function ProjectDetailView({ project }) {
+export default function ProjectDetailView({ project, session, slug }) {
   return (
     <div className="min-h-screen bg-linear-to-br from-zinc-50 to-zinc-100 dark:from-zinc-950 dark:to-zinc-900 pt-24 pb-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -67,7 +67,7 @@ export default function ProjectDetailView({ project }) {
             </div>
 
             {/* Project Link */}
-            <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800">
+            <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800 space-y-4">
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild className="flex-1">
                   <a href={project.link} target="_blank" rel="noreferrer">
@@ -79,6 +79,17 @@ export default function ProjectDetailView({ project }) {
                   <Link href="/projects">View All Projects</Link>
                 </Button>
               </div>
+
+              {session?.user && (
+                <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800">
+                  <Button asChild variant="secondary" className="w-full">
+                    <Link href={`/projects/${slug}/edit`}>
+                      <Pencil className="w-4 h-4 mr-2" />
+                      Edit Project
+                    </Link>
+                  </Button>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>

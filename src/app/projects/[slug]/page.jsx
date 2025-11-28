@@ -1,13 +1,15 @@
 import { notFound } from "next/navigation";
 import { createSlug } from "@/lib/utils";
+import { auth0 } from "@/lib/auth0";
+import { fetchProjects } from "@/lib/db";
 import ProjectDetailView from "@/components/project-detail-view";
 
 export default async function ProjectDetailPage({ params }) {
   const { slug } = await params;
+  const session = await auth0.getSession();
 
-  // Fetch all projects
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/projects`, { cache: "no-store" });
-  const { projects } = await res.json();
+  // Fetch all projects from database
+  const projects = await fetchProjects();
 
   // Find the project that matches the slug
   const project = projects.find(p => createSlug(p.title) === slug);
@@ -17,5 +19,5 @@ export default async function ProjectDetailPage({ params }) {
     notFound();
   }
 
-  return <ProjectDetailView project={project} />;
+  return <ProjectDetailView project={project} session={session} slug={slug} />;
 }

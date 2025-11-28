@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { Auth0Provider } from "@auth0/nextjs-auth0/client";
 import "./globals.css";
 import MyNavBar from "@/components/my-nav";
 import { Toaster } from "@/components/ui/sonner";
@@ -24,9 +25,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <MyNavBar />
-        {children}
-        <Toaster richColors position="top-right" />
+        <Auth0Provider>
+          <MyNavBar />
+          {children}
+          <Toaster richColors position="top-right" />
+        </Auth0Provider>
       </body>
     </html>
   );

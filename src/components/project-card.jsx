@@ -1,10 +1,38 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { toast } from "sonner";
+import { Pencil, Trash2 } from "lucide-react";
 
-export default function ProjectCard({ project, slug }) {
+export default function ProjectCard({ project, slug, session }) {
+  const router = useRouter();
+
+  const handleDelete = async () => {
+    if (!confirm("Are you sure you want to delete this project?")) return;
+
+    try {
+      const response = await fetch(`/api/projects/${project.id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        toast.success("Project deleted successfully");
+        router.refresh();
+      } else {
+        const data = await response.json();
+        toast.error(data.message || "Failed to delete project");
+      }
+    } catch (error) {
+      console.error("Error deleting project:", error);
+      toast.error("Failed to delete project");
+    }
+  };
+
   return (
     <Card className="group hover:scale-105 transition-transform overflow-hidden flex flex-col h-full">
       <Image
@@ -34,6 +62,25 @@ export default function ProjectCard({ project, slug }) {
             <Link href={`/projects/${slug}`}>Details</Link>
           </Button>
         </div>
+        {session?.user && (
+          <div className="flex flex-col sm:flex-row gap-2 pt-2 border-t">
+            <Button asChild size="sm" variant="outline" className="w-full sm:w-auto">
+              <Link href={`/projects/${slug}/edit`}>
+                <Pencil className="w-4 h-4 mr-1" />
+                Edit
+              </Link>
+            </Button>
+            <Button
+              size="sm"
+              variant="destructive"
+              className="w-full sm:w-auto"
+              onClick={handleDelete}
+            >
+              <Trash2 className="w-4 h-4 mr-1" />
+              Delete
+            </Button>
+          </div>
+        )}
       </CardContent>
     </Card>
   );

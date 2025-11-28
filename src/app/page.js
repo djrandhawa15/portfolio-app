@@ -100,7 +100,7 @@ export default function Home() {
           <h2 className="text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-8 text-center">
             GitHub Activity
           </h2>
-          <GitHubCalendar username="your-github-username" />
+          <GitHubCalendar username="djrandhawa15" />
         </div>
       </section>
 

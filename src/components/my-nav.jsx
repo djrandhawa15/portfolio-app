@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import UserNav from "@/components/user-nav";
 
 export default function MyNavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +25,7 @@ export default function MyNavBar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex gap-6">
+          <div className="hidden md:flex items-center gap-6">
             <Link href="/#about" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors">
               About
             </Link>
@@ -37,6 +38,7 @@ export default function MyNavBar() {
             <Link href="/contact" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors">
               Contact
             </Link>
+            <UserNav />
           </div>
 
           {/* Hamburger Menu Button */}

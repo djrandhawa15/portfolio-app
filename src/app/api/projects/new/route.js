@@ -1,6 +1,18 @@
+import { NextResponse } from "next/server";
+import { auth0 } from "@/lib/auth0";
+import { insertProject } from "@/lib/db";
+import { projectSchema } from "@/lib/schemas";
+import { revalidatePath } from "next/cache";
+
 // POST /api/projects/new
 export async function POST(req) {
   try {
+    // Require authentication
+    const session = await auth0.getSession();
+    if (!session?.user) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+
     const formData = await req.formData();
     const title = formData.get("title");
     const description = formData.get("description");
@@ -13,27 +25,53 @@ export async function POST(req) {
     try {
       keywords = JSON.parse(keywordsString);
     } catch (e) {
-      return Response.json({ ok: false, error: "Invalid keywords format" }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, error: "Invalid keywords format" },
+        { status: 400 }
+      );
     }
 
-    // Basic validation
-    if (!title || !description || !img || !link || !keywords || keywords.length === 0) {
-      return Response.json({ ok: false, error: "All fields are required" }, { status: 400 });
-    }
+    const projectData = {
+      title,
+      description,
+      image: img,
+      link,
+      keywords,
+    };
 
-    // FUTURE CONCERNS - you can ignore them now
-    // TODO: (recommended) validate here again with Zod
-    // TODO: persist to DB (Prisma/Drizzle/etc.)
-    // TODO: revalidatePath("/projects") after write (if using Next cache)
+    // Validate with Zod
+    const validatedData = projectSchema.parse(projectData);
 
-    const project = { title, description, image: img, link, keywords };
+    // Insert into database
+    const project = await insertProject(validatedData);
 
-    console.log("New project received:");
-    console.log({ project });
+    // Revalidate projects page
+    revalidatePath("/projects");
 
-    return Response.json({ ok: true, project }, { status: 201 });
+    return NextResponse.json(
+      { ok: true, message: "Project created", data: project },
+      { status: 201 }
+    );
   } catch (err) {
     console.error("Error creating project:", err);
-    return Response.json({ ok: false, error: "Invalid payload" }, { status: 400 });
+
+    if (err.name === "ZodError") {
+      return NextResponse.json(
+        { ok: false, error: "Validation failed", details: err.errors },
+        { status: 400 }
+      );
+    }
+
+    if (err.message === "Unauthorized") {
+      return NextResponse.json(
+        { ok: false, error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    return NextResponse.json(
+      { ok: false, error: "Failed to create project" },
+      { status: 500 }
+    );
   }
 }

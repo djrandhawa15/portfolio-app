@@ -6,7 +6,12 @@ import ProjectDetailView from "@/components/project-detail-view";
 
 export default async function ProjectDetailPage({ params }) {
   const { slug } = await params;
-  const session = await auth0.getSession();
+  let session = null;
+  try {
+    session = await auth0.getSession();
+  } catch (error) {
+    console.log("Session error (likely invalid cookie):", error.message);
+  }
 
   // Fetch all projects from database
   const projects = await fetchProjects();

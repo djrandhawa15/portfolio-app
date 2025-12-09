@@ -6,7 +6,13 @@ import { fetchProjects } from "@/lib/db";
 import ProjectCard from "@/components/project-card";
 
 export default async function ProjectsPage() {
-  const session = await auth0.getSession();
+  let session = null;
+  try {
+    session = await auth0.getSession();
+  } catch (error) {
+    // Handle invalid session cookies gracefully
+    console.log("Session error (likely invalid cookie):", error.message);
+  }
   const projects = await fetchProjects();
 
   return (

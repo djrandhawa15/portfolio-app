@@ -6,7 +6,12 @@ import EditProjectForm from "@/components/edit-project-form";
 
 export default async function EditProjectPage({ params }) {
   // Require authentication
-  const session = await auth0.getSession();
+  let session = null;
+  try {
+    session = await auth0.getSession();
+  } catch (error) {
+    console.log("Session error (likely invalid cookie):", error.message);
+  }
   if (!session?.user) {
     redirect("/api/auth/login");
   }

@@ -20,13 +20,20 @@ export default function ProjectDetailView({ project, session, slug }) {
         {/* Project Card */}
         <Card className="overflow-hidden">
           {/* Project Image */}
-          <div className="w-full h-48 sm:h-64 md:h-96 relative bg-zinc-100 dark:bg-zinc-800">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover"
-            />
+          <div className="w-full h-48 sm:h-64 md:h-96 relative bg-linear-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900 flex items-center justify-center">
+            {project.image && project.image !== "/images/placeholder-300x300.png" ? (
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover"
+              />
+            ) : (
+              <div className="text-center">
+                <div className="text-6xl sm:text-8xl mb-4">📁</div>
+                <p className="text-lg sm:text-xl text-zinc-500 dark:text-zinc-400 font-medium">{project.title}</p>
+              </div>
+            )}
           </div>
 
           <CardHeader>

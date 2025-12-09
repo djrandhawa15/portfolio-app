@@ -35,13 +35,22 @@ export default function ProjectCard({ project, slug, session }) {
 
   return (
     <Card className="group hover:scale-105 transition-transform overflow-hidden flex flex-col h-full">
-      <Image
-        src={project.image}
-        alt={project.title}
-        width={300}
-        height={300}
-        className="w-full h-40 sm:h-48 object-cover"
-      />
+      <div className="w-full h-40 sm:h-48 bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900 flex items-center justify-center relative overflow-hidden">
+        {project.image && project.image !== "/images/placeholder-300x300.png" ? (
+          <Image
+            src={project.image}
+            alt={project.title}
+            width={300}
+            height={300}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="text-center p-4">
+            <div className="text-4xl mb-2">📁</div>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">{project.title}</p>
+          </div>
+        )}
+      </div>
       <CardHeader className="flex-grow">
         <CardTitle className="text-lg sm:text-xl">{project.title}</CardTitle>
         <CardDescription className="line-clamp-2 text-sm">{project.description}</CardDescription>

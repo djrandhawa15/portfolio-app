@@ -1,32 +1,70 @@
-import { auth0 } from "@/lib/auth0";
-import { redirect } from "next/navigation";
+"use client";
 
-export default async function DashboardPage() {
-  const session = await auth0.getSession();
-  if (!session?.user) redirect("/api/auth/login");
+import { useEffect } from "react";
+import { redirect } from "next/navigation";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { toast } from "sonner";
+import HeroEditorForm from "@/components/hero-editor-form";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+
+export default function DashboardPage() {
+  const { user, error, isLoading } = useUser();
+
+  useEffect(() => {
+    console.log("Dashboard - User:", user);
+    console.log("Dashboard - Error:", error);
+    console.log("Dashboard - Loading:", isLoading);
+    if (error) toast.error(error.message);
+  }, [user, error, isLoading]);
+
+  if (error) redirect("/api/auth/login");
 
   return (
-    <section className="min-h-screen flex flex-col items-center gap-6 px-4 py-16">
-      <h1 className="text-4xl font-bold">Dashboard</h1>
-      <div className="w-full max-w-2xl bg-card rounded-lg border p-6 space-y-4">
-        <div>
-          <h2 className="text-xl font-semibold mb-2">Welcome!</h2>
-          <p className="text-muted-foreground">
-            Logged in as: <span className="font-medium text-foreground">{session.user.email}</span>
-          </p>
+    <div className="flex flex-col min-h-screen items-center bg-zinc-50 dark:bg-black">
+      <div className="w-full max-w-5xl px-4">
+        <div className="flex items-center justify-between mt-8 mb-6">
+          <h1 className="text-4xl font-bold">Dashboard</h1>
+          <Button asChild variant="outline" size="sm">
+            <Link href="/">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Home
+            </Link>
+          </Button>
         </div>
-        <div className="border-t pt-4">
-          <h3 className="text-lg font-medium mb-2">Admin Features</h3>
-          <p className="text-sm text-muted-foreground">
-            Future labs will let you edit the hero from here. For now, you can:
-          </p>
-          <ul className="list-disc list-inside text-sm text-muted-foreground mt-2 space-y-1">
-            <li>Manage your projects (add, edit, delete)</li>
-            <li>View your profile information</li>
-            <li>Access protected admin areas</li>
-          </ul>
-        </div>
+
+        {isLoading && (
+          <div className="flex justify-center items-center py-20">
+            <p className="text-lg">Loading...</p>
+          </div>
+        )}
+
+        {!isLoading && !user && (
+          <div className="text-center py-20">
+            <p className="text-lg mb-4">Log in to update your portfolio content.</p>
+            <Button asChild>
+              <Link href="/api/auth/login">Log In</Link>
+            </Button>
+          </div>
+        )}
+
+        {user && (
+          <div className="pb-10 space-y-6">
+            <div className="bg-card rounded-lg border p-6">
+              <h2 className="text-xl font-semibold mb-2">Welcome!</h2>
+              <p className="text-muted-foreground">
+                Logged in as:{" "}
+                <span className="font-medium text-foreground">
+                  {user.name || user.email || user.nickname}
+                </span>
+              </p>
+            </div>
+
+            <HeroEditorForm />
+          </div>
+        )}
       </div>
-    </section>
+    </div>
   );
 }

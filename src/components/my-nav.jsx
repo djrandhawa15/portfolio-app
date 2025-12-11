@@ -36,6 +36,9 @@ export default function MyNavBar() {
             <Link href="/#skills" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors">
               Skills
             </Link>
+            <Link href="/calendar" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors">
+              Book Meeting
+            </Link>
             <Link href="/contact" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors">
               Contact
             </Link>
@@ -80,6 +83,13 @@ export default function MyNavBar() {
                 onClick={closeMenu}
               >
                 Skills
+              </Link>
+              <Link
+                href="/calendar"
+                className="block text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors py-2"
+                onClick={closeMenu}
+              >
+                Book Meeting
               </Link>
               <Link
                 href="/contact"

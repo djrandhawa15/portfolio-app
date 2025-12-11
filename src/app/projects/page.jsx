@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { createSlug } from "@/lib/utils";
 import { auth0 } from "@/lib/auth0";
 import { fetchProjects } from "@/lib/db";
-import ProjectCard from "@/components/project-card";
+import { ProjectsListClient } from "@/components/projects-list-client";
 
 export default async function ProjectsPage() {
   let session = null;
@@ -34,12 +33,7 @@ export default async function ProjectsPage() {
           )}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {projects.map((p) => {
-            const slug = createSlug(p.title);
-            return <ProjectCard key={p.id} project={p} slug={slug} session={session} />;
-          })}
-        </div>
+        <ProjectsListClient projects={projects} session={session} />
       </div>
     </div>
   );

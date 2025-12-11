@@ -218,3 +218,70 @@ export async function upsertHero(updates = {}) {
     return mapHeroRow(row);
   }
 }
+
+// Bookings CRUD
+export async function ensureBookingsTable() {
+  await sql`
+    CREATE TABLE IF NOT EXISTS bookings (
+      id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+      name text NOT NULL,
+      email text NOT NULL,
+      date date NOT NULL,
+      time text NOT NULL,
+      message text NOT NULL,
+      status text NOT NULL DEFAULT 'pending',
+      created_at timestamptz NOT NULL DEFAULT now(),
+      updated_at timestamptz NOT NULL DEFAULT now()
+    )
+  `;
+}
+
+function mapBookingRow(row) {
+  return {
+    id: row.id,
+    name: row.name,
+    email: row.email,
+    date: row.date,
+    time: row.time,
+    message: row.message,
+    status: row.status,
+    createdAt: row.created_at,
+    updatedAt: row.updated_at,
+  };
+}
+
+export async function createBooking(data) {
+  await ensureBookingsTable();
+  const [row] = await sql`
+    INSERT INTO bookings (name, email, date, time, message)
+    VALUES (${data.name}, ${data.email}, ${data.date}, ${data.time}, ${data.message})
+    RETURNING *
+  `;
+  return mapBookingRow(row);
+}
+
+export async function fetchBookings() {
+  await ensureBookingsTable();
+  const rows = await sql`SELECT * FROM bookings ORDER BY date DESC, created_at DESC`;
+  return rows.map(mapBookingRow);
+}
+
+export async function getBookingById(id) {
+  const [row] = await sql`SELECT * FROM bookings WHERE id = ${id} LIMIT 1`;
+  return row ? mapBookingRow(row) : null;
+}
+
+export async function updateBookingStatus(id, status) {
+  const [row] = await sql`
+    UPDATE bookings
+    SET status = ${status}, updated_at = now()
+    WHERE id = ${id}
+    RETURNING *
+  `;
+  return row ? mapBookingRow(row) : null;
+}
+
+export async function deleteBooking(id) {
+  const [row] = await sql`DELETE FROM bookings WHERE id = ${id} RETURNING *`;
+  return row ? mapBookingRow(row) : null;
+}

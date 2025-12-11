@@ -3,6 +3,7 @@ import { Auth0Provider } from "@auth0/nextjs-auth0/client";
 import "./globals.css";
 import MyNavBar from "@/components/my-nav";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,15 +22,22 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Auth0Provider>
-          <MyNavBar />
-          {children}
-          <Toaster richColors position="top-right" />
-        </Auth0Provider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Auth0Provider>
+            <MyNavBar />
+            {children}
+            <Toaster richColors position="top-right" />
+          </Auth0Provider>
+        </ThemeProvider>
       </body>
     </html>
   );

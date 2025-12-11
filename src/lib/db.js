@@ -108,6 +108,10 @@ export async function deleteProject(id) {
   return row ? mapProject(row) : null;
 }
 
+export async function deleteAllProjects() {
+  await sql`DELETE FROM projects`;
+}
+
 // Hero Section CRUD
 const HERO_PLACEHOLDER_AVATAR = "data:image/gif;base64,R0lGODlhAQABAAAAACw=";
 const defaultHeroContent = {

@@ -1,5 +1,7 @@
 import ContactForm from "@/components/contact-form";
-import { Mail, MapPin, Github, Linkedin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
+import { SocialLinks } from "@/components/social-links";
+import { AvailabilityStatus } from "@/components/availability-status";
 
 export const metadata = {
   title: "Contact Me | Dilraj Randhawa",
@@ -35,6 +37,12 @@ export default function ContactPage() {
               Contact Information
             </h2>
 
+            {/* Availability Status */}
+            <AvailabilityStatus
+              status="available"
+              message="Looking for full-time opportunities and exciting projects"
+            />
+
             <div className="bg-white dark:bg-zinc-950 rounded-lg border border-zinc-200 dark:border-zinc-800 p-6 space-y-6">
               <div className="flex items-start gap-4">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
@@ -43,10 +51,10 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-medium text-zinc-900 dark:text-zinc-50">Email</h3>
                   <a
-                    href="mailto:your-email@example.com"
+                    href="mailto:dilrajran@gmail.com"
                     className="text-zinc-600 dark:text-zinc-400 hover:text-primary transition-colors"
                   >
-                    your-email@example.com
+                    dilrajran@gmail.com
                   </a>
                 </div>
               </div>
@@ -67,24 +75,7 @@ export default function ContactPage() {
                 <h3 className="font-medium text-zinc-900 dark:text-zinc-50 mb-4">
                   Connect with me
                 </h3>
-                <div className="flex gap-4">
-                  <a
-                    href="https://github.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
-                  >
-                    <Github className="h-5 w-5" />
-                  </a>
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
-                  >
-                    <Linkedin className="h-5 w-5" />
-                  </a>
-                </div>
+                <SocialLinks />
               </div>
             </div>
           </div>

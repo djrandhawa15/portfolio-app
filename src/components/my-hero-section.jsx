@@ -2,6 +2,7 @@ import { getHero } from "@/lib/db";
 import { Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { AvailabilityStatus } from "@/components/availability-status";
 
 const HERO_PLACEHOLDER_AVATAR = "data:image/gif;base64,R0lGODlhAQABAAAAACw=";
 const defaultHeroContent = {
@@ -66,6 +67,14 @@ export default async function MyHeroSection() {
           <p className="text-lg text-zinc-700 dark:text-zinc-300 mb-8 max-w-3xl mx-auto">
             {displayLongDesc}
           </p>
+
+          {/* Availability Status */}
+          <div className="mb-8 flex justify-center">
+            <AvailabilityStatus
+              status="available"
+              message="Looking for full-time opportunities"
+            />
+          </div>
 
           {/* CTA Buttons */}
           <div className="flex gap-4 justify-center">

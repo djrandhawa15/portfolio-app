@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import UserNav from "@/components/user-nav";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export default function MyNavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,17 +39,21 @@ export default function MyNavBar() {
             <Link href="/contact" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors">
               Contact
             </Link>
+            <ThemeSwitcher />
             <UserNav />
           </div>
 
-          {/* Hamburger Menu Button */}
-          <button
-            onClick={toggleMenu}
-            className="md:hidden text-zinc-900 dark:text-zinc-50 focus:outline-none"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Menu & Theme Switcher */}
+          <div className="md:hidden flex items-center gap-3">
+            <ThemeSwitcher />
+            <button
+              onClick={toggleMenu}
+              className="text-zinc-900 dark:text-zinc-50 focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu Dropdown */}

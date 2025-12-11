@@ -7,6 +7,7 @@ import GitHubCalendar from "@/components/github-calendar";
 import MyHeroSection from "@/components/my-hero-section";
 import { fetchProjects } from "@/lib/db";
 import { createSlug } from "@/lib/utils";
+import { SkillsGrid } from "@/components/skills-grid";
 
 // Force dynamic rendering to always fetch fresh hero data
 export const revalidate = 0;
@@ -15,12 +16,6 @@ export default async function Home() {
   // Fetch all projects and take only the first 3
   const allProjects = await fetchProjects();
   const featuredProjects = allProjects.slice(0, 3);
-
-  const skills = [
-    { category: "Frontend", items: ["React", "Next.js", "Tailwind CSS", "JavaScript", "TypeScript"] },
-    { category: "Backend", items: ["Node.js", "Express", "PostgreSQL", "MongoDB"] },
-    { category: "Tools", items: ["Git", "Docker", "AWS", "Figma"] },
-  ];
 
   return (
     <div className="min-h-screen bg-linear-to-br from-zinc-50 to-zinc-100 dark:from-zinc-950 dark:to-zinc-900">
@@ -136,24 +131,7 @@ export default async function Home() {
           <h2 className="text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-12 text-center">
             Skills & Technologies
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {skills.map((skillSet, index) => (
-              <Card key={index}>
-                <CardHeader>
-                  <CardTitle>{skillSet.category}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {skillSet.items.map((skill, i) => (
-                      <li key={i} className="text-zinc-700 dark:text-zinc-300">
-                        • {skill}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <SkillsGrid showProgress={true} />
         </div>
       </section>
 

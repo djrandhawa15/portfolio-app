@@ -30,12 +30,7 @@ export default async function Home() {
           </h2>
           <div className="max-w-3xl mx-auto">
             <p className="text-lg text-zinc-700 dark:text-zinc-300 mb-6">
-              I'm a software developer currently studying full stack development at BCIT.
-              I'm passionate about creating efficient, scalable, and user-friendly applications.
-            </p>
-            <p className="text-lg text-zinc-700 dark:text-zinc-300 mb-6">
-              With a focus on modern web technologies, I enjoy tackling complex problems
-              and continuously learning new skills to stay at the forefront of web development.
+              I'm a Full Stack Developer with a passion for building efficient, scalable, and user-friendly applications. I'm proficient in TypeScript, JavaScript, CSS, React, Next.js, Node.js, and modern web technologies. I enjoy solving complex problems and continuously learning new skills to stay at the forefront of web development.
             </p>
             <div className="flex gap-4 justify-center mt-8">
               <a href="#" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors">

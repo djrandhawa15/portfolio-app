@@ -18,7 +18,7 @@ async function updateHero() {
       UPDATE hero SET
         full_name = ${"Dilraj Randhawa"},
         short_description = ${"Full Stack Developer Student at BCIT | Passionate about building innovative web applications"},
-        long_description = ${"I'm a full stack development student at BCIT with a passion for creating efficient, scalable, and user-friendly applications. I'm proficient in TypeScript, JavaScript, CSS, React, Next.js, Node.js, and modern web technologies. I enjoy tackling complex problems and continuously learning new skills to stay at the forefront of web development."},
+        long_description = ${"I'm a Full Stack Developer with a passion for building efficient, scalable, and user-friendly applications. I'm proficient in TypeScript, JavaScript, CSS, React, Next.js, Node.js, and modern web technologies. I enjoy solving complex problems and continuously learning new skills to stay at the forefront of web development."},
         updated_at = now()
       WHERE id = (SELECT id FROM hero ORDER BY created_at ASC LIMIT 1)
       RETURNING *
@@ -37,7 +37,7 @@ async function updateHero() {
           ${"data:image/gif;base64,R0lGODlhAQABAAAAACw="},
           ${"Dilraj Randhawa"},
           ${"Full Stack Developer Student at BCIT | Passionate about building innovative web applications"},
-          ${"I'm a full stack development student at BCIT with a passion for creating efficient, scalable, and user-friendly applications. I'm proficient in TypeScript, JavaScript, CSS, React, Next.js, Node.js, and modern web technologies. I enjoy tackling complex problems and continuously learning new skills to stay at the forefront of web development."}
+          ${"I'm a Full Stack Developer with a passion for building efficient, scalable, and user-friendly applications. I'm proficient in TypeScript, JavaScript, CSS, React, Next.js, Node.js, and modern web technologies. I enjoy solving complex problems and continuously learning new skills to stay at the forefront of web development."}
         )
       `;
       console.log("✅ New hero created successfully!");

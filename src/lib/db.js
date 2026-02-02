@@ -118,7 +118,7 @@ const defaultHeroContent = {
   avatar: HERO_PLACEHOLDER_AVATAR,
   fullName: "Dilraj Randhawa",
   shortDescription: "Full Stack Developer Student at BCIT | Passionate about building innovative web applications",
-  longDescription: "I'm a full stack development student at BCIT with a passion for creating efficient, scalable, and user-friendly applications. I'm proficient in TypeScript, JavaScript, CSS, React, Next.js, Node.js, and modern web technologies. I enjoy tackling complex problems and continuously learning new skills to stay at the forefront of web development.",
+  longDescription: "I'm a Full Stack Developer with a passion for building efficient, scalable, and user-friendly applications. I'm proficient in TypeScript, JavaScript, CSS, React, Next.js, Node.js, and modern web technologies. I enjoy solving complex problems and continuously learning new skills to stay at the forefront of web development.",
 };
 
 function mapHeroRow(row) {

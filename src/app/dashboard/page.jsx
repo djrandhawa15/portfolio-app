@@ -1,25 +1,25 @@
 "use client";
 
-import { useEffect } from "react";
-import { redirect } from "next/navigation";
-import { useUser } from "@auth0/nextjs-auth0/client";
-import { toast } from "sonner";
+// import { useEffect } from "react";
+// import { redirect } from "next/navigation";
+// import { useUser } from "@auth0/nextjs-auth0/client";
+// import { toast } from "sonner";
 import HeroEditorForm from "@/components/hero-editor-form";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 
 export default function DashboardPage() {
-  const { user, error, isLoading } = useUser();
+  // const { user, error, isLoading } = useUser();
 
-  useEffect(() => {
-    console.log("Dashboard - User:", user);
-    console.log("Dashboard - Error:", error);
-    console.log("Dashboard - Loading:", isLoading);
-    if (error) toast.error(error.message);
-  }, [user, error, isLoading]);
+  // useEffect(() => {
+  //   console.log("Dashboard - User:", user);
+  //   console.log("Dashboard - Error:", error);
+  //   console.log("Dashboard - Loading:", isLoading);
+  //   if (error) toast.error(error.message);
+  // }, [user, error, isLoading]);
 
-  if (error) redirect("/api/auth/login");
+  // if (error) redirect("/api/auth/login");
 
   return (
     <div className="flex flex-col min-h-screen items-center bg-zinc-50 dark:bg-black">
@@ -34,7 +34,7 @@ export default function DashboardPage() {
           </Button>
         </div>
 
-        {isLoading && (
+        {/* {isLoading && (
           <div className="flex justify-center items-center py-20">
             <p className="text-lg">Loading...</p>
           </div>
@@ -49,21 +49,21 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {user && (
-          <div className="pb-10 space-y-6">
-            <div className="bg-card rounded-lg border p-6">
-              <h2 className="text-xl font-semibold mb-2">Welcome!</h2>
-              <p className="text-muted-foreground">
-                Logged in as:{" "}
-                <span className="font-medium text-foreground">
-                  {user.name || user.email || user.nickname}
-                </span>
-              </p>
-            </div>
+        {user && ( */}
+        <div className="pb-10 space-y-6">
+          {/* <div className="bg-card rounded-lg border p-6">
+            <h2 className="text-xl font-semibold mb-2">Welcome!</h2>
+            <p className="text-muted-foreground">
+              Logged in as:{" "}
+              <span className="font-medium text-foreground">
+                {user.name || user.email || user.nickname}
+              </span>
+            </p>
+          </div> */}
 
-            <HeroEditorForm />
-          </div>
-        )}
+          <HeroEditorForm />
+        </div>
+        {/* )} */}
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { auth0 } from "@/lib/auth0";
+// import { auth0 } from "@/lib/auth0";
 import { getHero, upsertHero } from "@/lib/db";
 import image2uri, { extTypeMap } from "image2uri";
 import fs from "fs";
@@ -28,15 +28,16 @@ export async function GET() {
   }
 }
 
-export const PUT = auth0.withApiAuthRequired(async (request) => {
+// export const PUT = auth0.withApiAuthRequired(async (request) => {
+export async function PUT(request) {
   try {
-    const session = await auth0.getSession();
-    if (!session?.user?.email) {
-      return NextResponse.json(
-        { message: "You must be logged in to edit the hero section" },
-        { status: 401 }
-      );
-    }
+    // const session = await auth0.getSession();
+    // if (!session?.user?.email) {
+    //   return NextResponse.json(
+    //     { message: "You must be logged in to edit the hero section" },
+    //     { status: 401 }
+    //   );
+    // }
 
     const formData = await request.formData();
     const avatarFile = formData.get("avatarFile");
@@ -67,7 +68,8 @@ export const PUT = auth0.withApiAuthRequired(async (request) => {
       { status: 500 }
     );
   }
-});
+}
+// });
 
 async function toDataUrl(file, fallbackString) {
   const fallback = typeof fallbackString === "string" ? fallbackString.trim() : "";

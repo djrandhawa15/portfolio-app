@@ -2,47 +2,36 @@ import { ensureProjectsTable, seedProjectsTable, deleteAllProjects } from "./db.
 
 const seedData = [
   {
-    title: "EventQuest",
-    description: "Event management and discovery web application built with HTML, CSS, and JavaScript. Features responsive design and interactive UI for browsing and managing events.",
-    image: "/images/placeholder-300x300.png",
-    link: "https://github.com/djrandhawa15/EventQuest",
-    keywords: ["html", "css", "javascript", "web-development"]
+    title: "Jargon",
+    description: "Jargon helps newcomer tradespeople overcome language barriers while pursuing Canadian Red Seal certification. Many language-learning apps lack trade-specific vocabulary, and technical manuals can be overwhelming, filled with complex terms and little context. Developed in collaboration with BCIT's ConnectHER hub, this 15-week project combines visual learning with interactive exercises, featuring flashcards, optical character recognition (OCR), Gemini 3 Flash AI-driven Q&A, and progress tracking to keep users engaged.\n\nBy balancing educational precision with an approachable interface, Jargon supports learners rather than intimidating them. Its interactive, goal-oriented design empowers tradespeople to overcome language obstacles, advance toward professional certification, and gain confidence in the workplace.",
+    image: "/images/projects/jargon/logoorangeIcon.webp",
+    link: "https://www.jargon-app.ca/",
+    keywords: ["React", "Hono", "TypeScript", "TanStack Query", "Tailwind CSS", "MySQL", "Prisma ORM", "Clerk", "Gemini Flash"],
+    logo: "/images/projects/jargon/logoorangeIcon.webp",
+    photos: [
+      "/images/projects/jargon/screenshot-1.png",
+      "/images/projects/jargon/screenshot-2.png",
+      "/images/projects/jargon/screenshot-3.png",
+      "/images/projects/jargon/screenshot-4.png",
+      "/images/projects/jargon/screenshot-5.png",
+      "/images/projects/jargon/screenshot-6.png",
+    ],
+    videos: [
+      {
+        url: "/images/projects/jargon/jargon-walkthrough.mp4",
+        description: "A walkthrough video demonstrating the Jargon AI-powered, gamified language learning app.",
+      },
+      {
+        url: "https://streamable.com/fqhwej",
+        description: "A video of our team presenting the Jargon gamified language learning app at BCIT's Burnaby Campus, Telus Theatre, on December 5, 2025.",
+      },
+    ],
+    links: [
+      { label: "Website", url: "https://jargon-app.framer.website/" },
+      { label: "Live Demo", url: "https://www.jargon-app.ca/" },
+      { label: "GitHub", url: "https://github.com/Jargon-IDSP" },
+    ],
   },
-  {
-    title: "Expense Tracker",
-    description: "Full-stack expense tracking application built with TypeScript and Bun runtime. Features Drizzle ORM for database management, Docker deployment, and a modern frontend interface for managing personal finances.",
-    image: "/images/placeholder-300x300.png",
-    link: "https://github.com/djrandhawa15/comp3330-expensetracker",
-    keywords: ["typescript", "bun", "drizzle-orm", "docker", "full-stack"]
-  },
-  {
-    title: "Social Media App - OOP Term Project",
-    description: "Collaborative social media application featuring post creation, likes, and AJAX-powered comments. Built with TypeScript, Vite, and Prisma ORM. Team project demonstrating object-oriented programming principles and full-stack development.",
-    image: "/images/placeholder-300x300.png",
-    link: "https://github.com/djrandhawa15/Term-Project-OOP",
-    keywords: ["typescript", "prisma", "vite", "ajax", "full-stack", "oop"]
-  },
-  {
-    title: "CineHub - Movie Application",
-    description: "React-based movie discovery application built with Vite. Features modern UI for browsing movies with responsive design and fast performance using React with SWC.",
-    image: "/images/placeholder-300x300.png",
-    link: "https://github.com/djrandhawa15/Movie-Project",
-    keywords: ["react", "vite", "javascript", "css", "spa"]
-  },
-  {
-    title: "Portfolio Application",
-    description: "Modern personal portfolio website built with JavaScript. Showcases projects, skills, and experience with a clean, responsive design.",
-    image: "/images/placeholder-300x300.png",
-    link: "https://github.com/djrandhawa15/portfolio-app",
-    keywords: ["javascript", "portfolio", "responsive", "web-development"]
-  },
-  {
-    title: "Passport Authentication Lab",
-    description: "Authentication implementation using Passport.js with TypeScript. Demonstrates user authentication patterns, session management, and secure login/logout functionality.",
-    image: "/images/placeholder-300x300.png",
-    link: "https://github.com/djrandhawa15/passport-typescript-lab-Dilraj",
-    keywords: ["typescript", "passport", "authentication", "security"]
-  }
 ];
 
 export async function runSeed() {

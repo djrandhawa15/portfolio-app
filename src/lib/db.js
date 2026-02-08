@@ -11,6 +11,10 @@ function mapProject(row) {
     image: row.image,
     link: row.link,
     keywords: row.keywords ?? [],
+    logo: row.logo || "",
+    photos: row.photos ?? [],
+    videos: row.videos ?? [],
+    links: row.links ?? [],
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };
@@ -29,13 +33,18 @@ export async function ensureProjectsTable() {
       updated_at timestamptz NOT NULL DEFAULT now()
     )
   `;
+  // Add new columns if they don't exist
+  await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS logo text DEFAULT ''`;
+  await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS photos jsonb DEFAULT '[]'::jsonb`;
+  await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS videos jsonb DEFAULT '[]'::jsonb`;
+  await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS links jsonb DEFAULT '[]'::jsonb`;
 }
 
 export async function seedProjectsTable(seed) {
   for (const item of seed) {
     await sql`
-      INSERT INTO projects (title, description, image, link, keywords)
-      VALUES (${item.title}, ${item.description}, ${item.image}, ${item.link}, ${JSON.stringify(item.keywords)})
+      INSERT INTO projects (title, description, image, link, keywords, logo, photos, videos, links)
+      VALUES (${item.title}, ${item.description}, ${item.image}, ${item.link}, ${JSON.stringify(item.keywords)}, ${item.logo || ""}, ${JSON.stringify(item.photos || [])}, ${JSON.stringify(item.videos || [])}, ${JSON.stringify(item.links || [])})
       ON CONFLICT DO NOTHING
     `;
   }
@@ -53,8 +62,8 @@ export async function getProjectById(id) {
 
 export async function insertProject(data) {
   const [row] = await sql`
-    INSERT INTO projects (title, description, image, link, keywords)
-    VALUES (${data.title}, ${data.description}, ${data.image}, ${data.link}, ${JSON.stringify(data.keywords)})
+    INSERT INTO projects (title, description, image, link, keywords, logo, photos, videos, links)
+    VALUES (${data.title}, ${data.description}, ${data.image}, ${data.link}, ${JSON.stringify(data.keywords)}, ${data.logo || ""}, ${JSON.stringify(data.photos || [])}, ${JSON.stringify(data.videos || [])}, ${JSON.stringify(data.links || [])})
     RETURNING *
   `;
   return mapProject(row);
@@ -83,6 +92,22 @@ export async function updateProject(id, updates) {
   if (updates.keywords !== undefined) {
     fields.push(`keywords = $${fields.length + 1}`);
     values.push(JSON.stringify(updates.keywords));
+  }
+  if (updates.logo !== undefined) {
+    fields.push(`logo = $${fields.length + 1}`);
+    values.push(updates.logo);
+  }
+  if (updates.photos !== undefined) {
+    fields.push(`photos = $${fields.length + 1}`);
+    values.push(JSON.stringify(updates.photos));
+  }
+  if (updates.videos !== undefined) {
+    fields.push(`videos = $${fields.length + 1}`);
+    values.push(JSON.stringify(updates.videos));
+  }
+  if (updates.links !== undefined) {
+    fields.push(`links = $${fields.length + 1}`);
+    values.push(JSON.stringify(updates.links));
   }
 
   if (fields.length === 0) {

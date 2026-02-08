@@ -20,6 +20,10 @@ export const projectSchema = z.object({
   image: z.string().url({ message: "Please enter a valid image URL" }),
   link: z.string().url({ message: "Please enter a valid project URL" }),
   keywords: z.array(z.string()).default([]),
+  logo: z.string().optional().default(""),
+  photos: z.array(z.string()).optional().default([]),
+  videos: z.array(z.object({ url: z.string(), description: z.string() })).optional().default([]),
+  links: z.array(z.object({ label: z.string(), url: z.string() })).optional().default([]),
 });
 
 export const projectUpdateSchema = z.object({
@@ -28,4 +32,8 @@ export const projectUpdateSchema = z.object({
   image: z.string().url().optional(),
   link: z.string().url().optional(),
   keywords: z.array(z.string()).optional(),
+  logo: z.string().optional(),
+  photos: z.array(z.string()).optional(),
+  videos: z.array(z.object({ url: z.string(), description: z.string() })).optional(),
+  links: z.array(z.object({ label: z.string(), url: z.string() })).optional(),
 });

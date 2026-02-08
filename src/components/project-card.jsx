@@ -36,7 +36,15 @@ export default function ProjectCard({ project, slug, session }) {
   return (
     <Card className="group hover:scale-105 transition-transform overflow-hidden flex flex-col h-full">
       <div className="w-full h-40 sm:h-48 bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900 flex items-center justify-center relative overflow-hidden">
-        {project.image && project.image !== "/images/placeholder-300x300.png" ? (
+        {project.logo ? (
+          <Image
+            src={project.logo}
+            alt={project.title}
+            width={120}
+            height={120}
+            className="object-contain"
+          />
+        ) : project.image && project.image !== "/images/placeholder-300x300.png" ? (
           <Image
             src={project.image}
             alt={project.title}

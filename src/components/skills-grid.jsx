@@ -7,6 +7,7 @@ const skillsData = [
     category: "Coding Languages",
     icon: Code2,
     color: "text-blue-600 dark:text-blue-400",
+    bulletColor: "bg-blue-600 dark:bg-blue-400",
     bgColor: "bg-blue-50 dark:bg-blue-950/30",
     borderColor: "border-blue-200 dark:border-blue-800",
     skills: [
@@ -26,6 +27,7 @@ const skillsData = [
     category: "Back-End",
     icon: Server,
     color: "text-green-600 dark:text-green-400",
+    bulletColor: "bg-green-600 dark:bg-green-400",
     bgColor: "bg-green-50 dark:bg-green-950/30",
     borderColor: "border-green-200 dark:border-green-800",
     skills: [
@@ -43,6 +45,7 @@ const skillsData = [
     category: "Databases",
     icon: Database,
     color: "text-purple-600 dark:text-purple-400",
+    bulletColor: "bg-purple-600 dark:bg-purple-400",
     bgColor: "bg-purple-50 dark:bg-purple-950/30",
     borderColor: "border-purple-200 dark:border-purple-800",
     skills: [
@@ -76,6 +79,7 @@ const skillsData = [
     category: "Development Tools",
     icon: Wrench,
     color: "text-orange-600 dark:text-orange-400",
+    bulletColor: "bg-orange-600 dark:bg-orange-400",
     bgColor: "bg-orange-50 dark:bg-orange-950/30",
     borderColor: "border-orange-200 dark:border-orange-800",
     skills: [
@@ -125,7 +129,7 @@ export function SkillsGrid() {
                   key={skillIdx}
                   className="flex items-center gap-2 text-sm text-zinc-700 dark:text-zinc-300"
                 >
-                  <span className={`h-1.5 w-1.5 rounded-full ${category.color.replace('text-', 'bg-')}`} />
+                  <span className={`h-1.5 w-1.5 rounded-full ${category.bulletColor}`} />
                   {skill}
                 </li>
               ))}

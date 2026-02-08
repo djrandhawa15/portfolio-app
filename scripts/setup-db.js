@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 // IMPORTANT: Load environment variables BEFORE importing any other modules
 // This ensures process.env is populated when db.js initializes
 dotenv.config({ path: ".env.local" });
+dotenv.config({ path: ".env" });
 
 // Now we can safely import modules that depend on environment variables
 const { runSeed } = await import("../src/lib/seed.js");

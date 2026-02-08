@@ -3,6 +3,7 @@ import { Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { AvailabilityStatus } from "@/components/availability-status";
+import RotatingText from "@/components/rotating-text";
 
 const HERO_PLACEHOLDER_AVATAR = "data:image/gif;base64,R0lGODlhAQABAAAAACw=";
 const defaultHeroContent = {
@@ -53,6 +54,23 @@ export default async function MyHeroSection() {
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-zinc-900 dark:text-zinc-50 mb-6">
             {displayFullName}
           </h1>
+
+          {/* Rotating Tagline */}
+          <div className="mb-8 flex justify-center items-center text-xl sm:text-2xl text-zinc-600 dark:text-zinc-400">
+            <span className="mr-2">I&apos;m a</span>
+            <RotatingText
+              texts={["Full Stack Developer", "Problem Solver", "Team Player", "Quick Learner", "Creative Thinker"]}
+              mainClassName="px-3 py-1 bg-zinc-900 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-900 overflow-hidden rounded-lg font-semibold"
+              staggerFrom="last"
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "-120%" }}
+              staggerDuration={0.025}
+              splitLevelClassName="overflow-hidden pb-0.5"
+              transition={{ type: "spring", damping: 30, stiffness: 400 }}
+              rotationInterval={2500}
+            />
+          </div>
 
           {/* Availability Status */}
           <div className="mb-8 flex justify-center">

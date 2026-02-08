@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLink, ArrowLeft, Pencil, Github, Globe } from "lucide-react";
+import PhotoGallery from "@/components/photo-gallery";
 
 function isStreamableUrl(url) {
   return url.includes("streamable.com");
@@ -46,7 +47,7 @@ export default function ProjectDetailView({ project, session, slug }) {
           </div>
 
           <CardHeader>
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+            <div className="flex flex-col gap-4">
               <div className="flex items-center gap-3">
                 {project.logo && (
                   <Image
@@ -59,12 +60,29 @@ export default function ProjectDetailView({ project, session, slug }) {
                 )}
                 <CardTitle className="text-2xl sm:text-3xl md:text-4xl">{project.title}</CardTitle>
               </div>
-              <Button asChild size="sm" className="w-full sm:w-auto">
-                <a href={project.link} target="_blank" rel="noreferrer">
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  Visit
-                </a>
-              </Button>
+              {project.links && project.links.length > 0 ? (
+                <div className="flex flex-wrap gap-2">
+                  {project.links.map((link, i) => {
+                    const isGithub = link.url.includes("github.com");
+                    const Icon = isGithub ? Github : Globe;
+                    return (
+                      <Button key={i} asChild size="sm" variant={i === 0 ? "default" : "outline"}>
+                        <a href={link.url} target="_blank" rel="noreferrer">
+                          <Icon className="w-4 h-4 mr-2" />
+                          {link.label}
+                        </a>
+                      </Button>
+                    );
+                  })}
+                </div>
+              ) : (
+                <Button asChild size="sm" className="w-fit">
+                  <a href={project.link} target="_blank" rel="noreferrer">
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    Visit
+                  </a>
+                </Button>
+              )}
             </div>
           </CardHeader>
 
@@ -101,18 +119,7 @@ export default function ProjectDetailView({ project, session, slug }) {
                 <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
                   Photos
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {project.photos.map((photo, i) => (
-                    <div key={i} className="relative aspect-video rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800">
-                      <Image
-                        src={photo}
-                        alt={`${project.title} screenshot ${i + 1}`}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
+                <PhotoGallery photos={project.photos} title={project.title} />
               </div>
             )}
 
@@ -151,48 +158,19 @@ export default function ProjectDetailView({ project, session, slug }) {
               </div>
             )}
 
-            {/* Project Links */}
+            {/* Footer Actions */}
             <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800 space-y-4">
-              {project.links && project.links.length > 0 ? (
-                <div className="flex flex-col sm:flex-row flex-wrap gap-3">
-                  {project.links.map((link, i) => {
-                    const isGithub = link.url.includes("github.com");
-                    const Icon = isGithub ? Github : Globe;
-                    return (
-                      <Button key={i} asChild variant={i === 0 ? "default" : "outline"} className="flex-1">
-                        <a href={link.url} target="_blank" rel="noreferrer">
-                          <Icon className="w-4 h-4 mr-2" />
-                          {link.label}
-                        </a>
-                      </Button>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button asChild className="flex-1">
-                    <a href={project.link} target="_blank" rel="noreferrer">
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Open Project
-                    </a>
-                  </Button>
-                </div>
-              )}
-              <div>
-                <Button asChild variant="outline" className="w-full">
-                  <Link href="/projects">View All Projects</Link>
-                </Button>
-              </div>
+              <Button asChild variant="outline" className="w-full">
+                <Link href="/projects">View All Projects</Link>
+              </Button>
 
               {session?.user && (
-                <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800">
-                  <Button asChild variant="secondary" className="w-full">
-                    <Link href={`/projects/${slug}/edit`}>
-                      <Pencil className="w-4 h-4 mr-2" />
-                      Edit Project
-                    </Link>
-                  </Button>
-                </div>
+                <Button asChild variant="secondary" className="w-full">
+                  <Link href={`/projects/${slug}/edit`}>
+                    <Pencil className="w-4 h-4 mr-2" />
+                    Edit Project
+                  </Link>
+                </Button>
               )}
             </div>
           </CardContent>

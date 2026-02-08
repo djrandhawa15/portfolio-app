@@ -3,7 +3,9 @@
     "allow": [
       "Bash(npm run seed:*)",
       "Bash(npm install:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "WebFetch(domain:reactbits.dev)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }

@@ -8,8 +8,6 @@ const HERO_PLACEHOLDER_AVATAR = "data:image/gif;base64,R0lGODlhAQABAAAAACw=";
 const defaultHeroContent = {
   avatar: HERO_PLACEHOLDER_AVATAR,
   fullName: "Your Name",
-
-  longDescription: "Your longer description goes here. Tell us about yourself!",
 };
 
 export default async function MyHeroSection() {
@@ -31,8 +29,6 @@ export default async function MyHeroSection() {
       : HERO_PLACEHOLDER_AVATAR;
 
   const displayFullName = heroData.fullName || defaultHeroContent.fullName;
-
-  const displayLongDesc = heroData.longDescription || defaultHeroContent.longDescription;
 
   return (
     <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -57,11 +53,6 @@ export default async function MyHeroSection() {
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-zinc-900 dark:text-zinc-50 mb-6">
             {displayFullName}
           </h1>
-
-          {/* Long Description */}
-          <p className="text-lg text-zinc-700 dark:text-zinc-300 mb-8 max-w-3xl mx-auto">
-            {displayLongDesc}
-          </p>
 
           {/* Availability Status */}
           <div className="mb-8 flex justify-center">

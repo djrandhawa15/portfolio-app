@@ -8,6 +8,7 @@ import MyHeroSection from "@/components/my-hero-section";
 import { fetchProjects } from "@/lib/db";
 import { createSlug } from "@/lib/utils";
 import { SkillsGrid } from "@/components/skills-grid";
+import ResumeSection from "@/components/resume-section";
 
 // Force dynamic rendering to always fetch fresh hero data
 export const revalidate = 0;
@@ -119,6 +120,9 @@ export default async function Home() {
           )}
         </div>
       </section>
+
+      {/* Resume Section */}
+      <ResumeSection />
 
       {/* Skills Section */}
       <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-zinc-950">

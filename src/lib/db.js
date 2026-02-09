@@ -51,7 +51,7 @@ export async function seedProjectsTable(seed) {
 }
 
 export async function fetchProjects() {
-  const rows = await sql`SELECT * FROM projects ORDER BY created_at DESC`;
+  const rows = await sql`SELECT * FROM projects ORDER BY created_at ASC`;
   return rows.map(mapProject);
 }
 

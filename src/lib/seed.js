@@ -37,7 +37,7 @@ const seedData = [
     description: "CINE HUB is an innovative movie database project designed to provide users with a comprehensive and immersive movie experience. CINE HUB offers a vast collection of information about movies, TV shows, actors, and more.\n\nCreated by: Priya, Simran, Dilraj, and Mudarres.\n\nThis product uses the TMDb API but is not endorsed or certified by TMDb.",
     image: "/images/projects/cinehub/logo.svg",
     link: "https://cinehub-h3qq.onrender.com/",
-    keywords: ["TMDb API"],
+    keywords: ["JavaScript", "CSS", "HTML", "React", "Vite", "TMDb API"],
     logo: "/images/projects/cinehub/logo.svg",
     photos: [
       "/images/projects/cinehub/screenshot-1.png",

@@ -32,6 +32,24 @@ const seedData = [
       { label: "GitHub", url: "https://github.com/Jargon-IDSP" },
     ],
   },
+  {
+    title: "CineHub",
+    description: "CINE HUB is an innovative movie database project designed to provide users with a comprehensive and immersive movie experience. CINE HUB offers a vast collection of information about movies, TV shows, actors, and more.\n\nCreated by: Priya, Simran, Dilraj, and Mudarres.\n\nThis product uses the TMDb API but is not endorsed or certified by TMDb.",
+    image: "/images/projects/cinehub/logo.svg",
+    link: "https://cinehub-h3qq.onrender.com/",
+    keywords: ["TMDb API"],
+    logo: "/images/projects/cinehub/logo.svg",
+    photos: [
+      "/images/projects/cinehub/screenshot-1.png",
+      "/images/projects/cinehub/screenshot-2.png",
+      "/images/projects/cinehub/screenshot-3.png",
+    ],
+    videos: [],
+    links: [
+      { label: "Live Demo", url: "https://cinehub-h3qq.onrender.com/" },
+      { label: "GitHub", url: "https://github.com/djrandhawa15/Movie-Project" },
+    ],
+  },
 ];
 
 export async function runSeed() {

@@ -72,11 +72,11 @@ export default function ProjectCard({ project, slug, session }) {
           ))}
         </div>
         <div className="flex flex-col sm:flex-row gap-2">
-          <Button asChild size="sm" variant="secondary" className="w-full sm:w-auto">
-            <a href={project.link} target="_blank" rel="noreferrer">Open</a>
-          </Button>
           <Button asChild size="sm" className="w-full sm:w-auto">
             <Link href={`/projects/${slug}`}>Details</Link>
+          </Button>
+          <Button asChild size="sm" variant="secondary" className="w-full sm:w-auto">
+            <a href={project.link} target="_blank" rel="noreferrer">Live Demo</a>
           </Button>
         </div>
         {session?.user && (

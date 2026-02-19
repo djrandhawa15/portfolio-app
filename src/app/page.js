@@ -29,8 +29,8 @@ export default async function Home() {
             About Me
           </h2>
           <div className="max-w-3xl mx-auto">
-            <p className="text-lg text-zinc-700 dark:text-zinc-300 mb-6">
-              I'm a Full Stack Developer with a passion for building efficient, scalable, and user-friendly applications. I'm proficient in TypeScript, JavaScript, CSS, React, Next.js, Node.js, and modern web technologies. I enjoy solving complex problems and continuously learning new skills to stay at the forefront of web development.
+            <p className="text-lg text-zinc-700 dark:text-zinc-300 mb-6 text-justify">
+              I&apos;m a Full Stack Developer and Certified Scrum Master with a passion for building efficient, scalable, and user-friendly applications. I&apos;m proficient in TypeScript, JavaScript, CSS, React, Next.js, Node.js, and modern web technologies. I enjoy solving complex problems and continuously learning new skills to stay at the forefront of web development.
             </p>
             <div className="flex gap-4 justify-center mt-8">
               <a href="https://github.com/djrandhawa15" target="_blank" rel="noreferrer" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors">

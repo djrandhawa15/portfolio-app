@@ -32,12 +32,14 @@ export default function UserNav() {
     );
   }
 
-  return (
-    <Button asChild size="sm">
-      <a href="/api/auth/login">
-        <LogIn className="w-4 h-4 mr-2" />
-        Login
-      </a>
-    </Button>
-  );
+  return null;
+
+  // return (
+  //   <Button asChild size="sm">
+  //     <a href="/api/auth/login">
+  //       <LogIn className="w-4 h-4 mr-2" />
+  //       Login
+  //     </a>
+  //   </Button>
+  // );
 }

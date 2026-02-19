@@ -24,7 +24,7 @@ export default function ResumeSection() {
           <Card>
             <CardContent className="pt-6">
               <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">
-                Full-Stack Developer (entry-level) with hands-on experience building web applications. Developed an inventory management system using React, Node.js, and PostgreSQL that streamlined supply tracking, and created a responsive e-commerce site that reduced page load time by 40%. Skilled in JavaScript, TypeScript, C#, Python, cloud services, and Agile collaboration. Eager to leverage these abilities to deliver high-quality solutions as a software engineering intern.
+                Full-Stack Developer with hands-on experience building web applications. Developed an inventory management system using React, Node.js, and PostgreSQL that streamlined supply tracking, and created a responsive e-commerce site that reduced page load time by 40%. Skilled in JavaScript, TypeScript, C#, Python, cloud services, and Agile collaboration. Eager to leverage these abilities to deliver high-quality solutions as a software engineering intern.
               </p>
             </CardContent>
           </Card>
@@ -47,10 +47,10 @@ export default function ResumeSection() {
                   <span className="text-sm text-zinc-500 dark:text-zinc-400 font-medium mt-1 sm:mt-0">Oct 2014 - Present</span>
                 </div>
                 <ul className="list-disc list-inside space-y-2 text-sm text-zinc-700 dark:text-zinc-300 mt-3">
-                  <li>Loaded and unloaded cargo from ships, handling containers, bulk goods, and other items with cranes and forklifts while following safety protocols, resulting in zero injury incidents</li>
-                  <li>Operated specialized equipment including cranes, forklifts, and tractor-trailers to move cargo across the dock, ensuring smooth workflow during peak shifts</li>
-                  <li>Responded to emergencies as a certified first-aid attendant, providing immediate care and containment that minimized downtime and protected crew safety</li>
-                  <li>Handled hazardous materials following OSHA-approved procedures, ensuring regulatory compliance and preventing safety incidents</li>
+                  <li>Load and unload cargo from ships, handling containers, bulk goods, and other items with cranes and forklifts while following safety protocols, keeping vessel turnaround on schedule and maintaining zero injury incidents.</li>
+                  <li>Operate specialized equipment—including cranes, forklifts, and tractor-trailers—to move cargo across the dock, ensuring smooth workflow and preventing equipment downtime, supporting continuous operations during peak shifts.</li>
+                  <li>Respond to emergencies such as accidents, spills, and equipment failures as a certified first-aid attendant, providing immediate care and containment that minimizes downtime and protects crew safety.</li>
+                  <li>Handle hazardous materials by following OSHA-approved procedures and using proper containment equipment, ensuring regulatory compliance and preventing safety incidents.</li>
                 </ul>
               </div>
             </CardContent>
@@ -126,7 +126,7 @@ export default function ResumeSection() {
               <div>
                 <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-50 mb-2">Coding Languages</h4>
                 <div className="flex flex-wrap gap-1.5">
-                  {["React", "Angular", "C#", "C++", "HTML5", "JavaScript", "TypeScript", "SaaS", "MongoDB", "PHP"].map((skill) => (
+                  {["React", "Angular", "C#", "C++", "HTML5", "CSS", "JavaScript", "TypeScript", "SaaS", "PHP"].map((skill) => (
                     <Badge key={skill} variant="secondary" className="text-xs">{skill}</Badge>
                   ))}
                 </div>
@@ -158,7 +158,7 @@ export default function ResumeSection() {
               <div>
                 <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-50 mb-2">Other</h4>
                 <div className="flex flex-wrap gap-1.5">
-                  {["Agile", "Kanban", "CI/CD", "Cloud Computing", "CSM", "DOM", "Marketing", "IT Law", "Networking", "VM", "REST APIs", "AWS S3", "E-commerce", "UI Design", "UX Design", "SEO"].map((skill) => (
+                  {["Agile", "Kanban", "CI/CD", "Cloud Computing", "CSM", "DOM", "Marketing", "IT Law", "Networking", "VM", "AWS S3", "E-commerce", "UI Design", "UX Design", "SEO"].map((skill) => (
                     <Badge key={skill} variant="secondary" className="text-xs">{skill}</Badge>
                   ))}
                 </div>

@@ -53,11 +53,22 @@ const seedData = [
   {
     title: "Money Monsters",
     description: "High school education does not prepare children to deal with financial responsibilities, and there is no practical manner for young people to improve their literacy in the subject. Although parents try to educate their children, many struggle to find effective tools that combine real world money management with age appropriate learning materials.\n\nMoney Monsters addresses this challenge by enabling parents to assign household chores and offer pocket money as incentives. Children can set savings goals, request rewards, and access educational content about managing budgets. The priority was designing a simple solution that ensures young users can navigate the platform independently, while parents maintain an administrative overview.\n\nDeveloped over four weeks, this full stack application uses a task and reward structure, mirroring real world financial transactions. The playful yet functional visual design makes budgeting tangible, and transforms routine household tasks into meaningful learning opportunities.",
-    image: "/images/placeholder-300x300.png",
+    image: "/images/projects/money-monsters/logo.webp",
     link: "https://moneymonstersv2.onrender.com/",
     keywords: ["MongoDB", "JavaScript", "Express.js", "Sass", "Jira"],
-    logo: "",
-    photos: [],
+    logo: "/images/projects/money-monsters/logo.webp",
+    photos: [
+      { url: "/images/projects/money-monsters/screenshot-1.webp", caption: "" },
+      { url: "/images/projects/money-monsters/screenshot-2.webp", caption: "" },
+      {
+        url: "/images/projects/money-monsters/screenshot-3.webp",
+        caption: "Family Management\n\nBuilt the family management system to connect family members and assign roles (parent/child). Designed the interface when design deliverables were delayed to keep the team on track.",
+      },
+      {
+        url: "/images/projects/money-monsters/screenshot-4.png",
+        caption: "User Profiles\n\nDeveloped user profiles with Cloudinary integration for profile picture uploads. Implemented cookie-based data retrieval and protected routes to ensure users can only access their own data.",
+      },
+    ],
     videos: [],
     links: [
       { label: "Live Demo", url: "https://moneymonstersv2.onrender.com/" },

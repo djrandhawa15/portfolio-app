@@ -4,6 +4,14 @@ import Image from "next/image";
 import { useState, useCallback, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
+// photos can be strings (url) or objects { url, caption }
+function getUrl(photo) {
+  return typeof photo === "string" ? photo : photo.url;
+}
+function getCaption(photo) {
+  return typeof photo === "string" ? null : photo.caption || null;
+}
+
 export default function PhotoGallery({ photos, title }) {
   const [selectedIndex, setSelectedIndex] = useState(null);
 
@@ -25,25 +33,38 @@ export default function PhotoGallery({ photos, title }) {
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {photos.map((photo, i) => (
-          <button
-            key={i}
-            onClick={() => setSelectedIndex(i)}
-            className="relative aspect-video rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800 cursor-pointer hover:opacity-90 transition-opacity"
-          >
-            <Image
-              src={photo}
-              alt={`${title} screenshot ${i + 1}`}
-              fill
-              className="object-cover"
-            />
-          </button>
-        ))}
+        {photos.map((photo, i) => {
+          const url = getUrl(photo);
+          const caption = getCaption(photo);
+          return (
+            <div key={i} className="space-y-1">
+              <button
+                onClick={() => setSelectedIndex(i)}
+                className="relative aspect-video w-full rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800 cursor-pointer hover:opacity-90 transition-opacity"
+              >
+                <Image
+                  src={url}
+                  alt={caption || `${title} screenshot ${i + 1}`}
+                  fill
+                  className="object-cover"
+                />
+              </button>
+              {caption && (
+                <div>
+                  <p className="text-sm font-medium text-zinc-800 dark:text-zinc-200">{caption.split("\n\n")[0]}</p>
+                  {caption.includes("\n\n") && (
+                    <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">{caption.split("\n\n")[1]}</p>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
 
       {selectedIndex !== null && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm"
           onClick={close}
         >
           <button
@@ -71,16 +92,28 @@ export default function PhotoGallery({ photos, title }) {
           )}
 
           <div
-            className="relative max-w-[90vw] max-h-[90vh] w-full h-full"
+            className="relative max-w-[90vw] max-h-[80vh] w-full h-full"
             onClick={(e) => e.stopPropagation()}
           >
             <Image
-              src={photos[selectedIndex]}
-              alt={`${title} screenshot ${selectedIndex + 1}`}
+              src={getUrl(photos[selectedIndex])}
+              alt={getCaption(photos[selectedIndex]) || `${title} screenshot ${selectedIndex + 1}`}
               fill
               className="object-contain"
             />
           </div>
+
+          {getCaption(photos[selectedIndex]) && (
+            <div
+              className="mt-3 text-center px-6 max-w-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <p className="text-white font-medium text-sm">{getCaption(photos[selectedIndex]).split("\n\n")[0]}</p>
+              {getCaption(photos[selectedIndex]).includes("\n\n") && (
+                <p className="text-zinc-400 text-xs mt-1">{getCaption(photos[selectedIndex]).split("\n\n")[1]}</p>
+              )}
+            </div>
+          )}
         </div>
       )}
     </>

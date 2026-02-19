@@ -107,6 +107,11 @@ export default function GitHubCalendar({ username = "djrandhawa15" }) {
         .dark .js-github-calendar .contrib-legend .legend-li {
           color: #a1a1aa;
         }
+        .js-github-calendar .contrib-footer,
+        .js-github-calendar .contrib-column-left,
+        .js-github-calendar .contrib-column {
+          display: none !important;
+        }
       `}</style>
     </div>
   );

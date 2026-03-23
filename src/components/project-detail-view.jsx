@@ -59,6 +59,11 @@ export default function ProjectDetailView({ project, session, slug }) {
                   />
                 )}
                 <CardTitle className="text-2xl sm:text-3xl md:text-4xl">{project.title}</CardTitle>
+                {project.caseStudy && (
+                  <Badge variant="outline" className="text-sm border-amber-400 text-amber-600 dark:text-amber-400">
+                    Case Study
+                  </Badge>
+                )}
               </div>
               {project.links && project.links.length > 0 ? (
                 <div className="flex flex-wrap gap-2">

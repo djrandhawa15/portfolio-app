@@ -60,7 +60,14 @@ export default function ProjectCard({ project, slug, session }) {
         )}
       </div>
       <CardHeader className="flex-grow">
-        <CardTitle className="text-lg sm:text-xl">{project.title}</CardTitle>
+        <div className="flex items-start justify-between gap-2">
+          <CardTitle className="text-lg sm:text-xl">{project.title}</CardTitle>
+          {project.caseStudy && (
+            <Badge variant="outline" className="shrink-0 text-xs border-amber-400 text-amber-600 dark:text-amber-400">
+              Case Study
+            </Badge>
+          )}
+        </div>
         <CardDescription className="line-clamp-2 text-sm">{project.description}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">

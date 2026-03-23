@@ -158,7 +158,7 @@ export default function ResumeSection() {
               <div>
                 <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-50 mb-2">Other</h4>
                 <div className="flex flex-wrap gap-1.5">
-                  {["Agile", "Kanban", "CI/CD", "Cloud Computing", "CSM", "DOM", "Marketing", "IT Law", "Networking", "VM", "AWS S3", "E-commerce", "UI Design", "UX Design", "SEO"].map((skill) => (
+                  {["Agile", "Kanban", "CI/CD", "Cloud Computing", "CSM", "DOM", "VM", "AWS S3"].map((skill) => (
                     <Badge key={skill} variant="secondary" className="text-xs">{skill}</Badge>
                   ))}
                 </div>

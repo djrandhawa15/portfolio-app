@@ -145,6 +145,24 @@ const seedData = [
     ],
   },
   {
+    title: "Authors & Books Library",
+    description: "Full-stack web application for managing a library of authors and their books with complete CRUD functionality.\n\nView all authors with book counts at a glance, add, edit, and delete authors with birth dates, and manage books for each author including title, description, and ISBN. Real-time author-book relationship tracking keeps data consistent, and the database is automatically seeded on deployment.",
+    image: "/images/projects/authors-books/screenshot-1.png",
+    link: "https://practice-final.onrender.com/",
+    keywords: ["Node.js", "Express.js", "EJS", "MySQL", "CSS", "Render"],
+    logo: "/images/projects/authors-books/logo.svg",
+    photos: [
+      { url: "/images/projects/authors-books/screenshot-1.png", caption: "Author Directory\n\nHome page listing all authors with their birth dates and total book counts, with inline add/edit/delete controls." },
+    ],
+    videos: [],
+    links: [
+      { label: "Live Demo", url: "https://practice-final.onrender.com/" },
+      { label: "GitHub", url: "https://github.com/djrandhawa15/practice-final" },
+    ],
+    caseStudy: false,
+    sections: [],
+  },
+  {
     title: "Money Monsters",
     description: "High school education does not prepare children to deal with financial responsibilities, and there is no practical manner for young people to improve their literacy in the subject. Although parents try to educate their children, many struggle to find effective tools that combine real world money management with age appropriate learning materials.\n\nMoney Monsters addresses this challenge by enabling parents to assign household chores and offer pocket money as incentives. Children can set savings goals, request rewards, and access educational content about managing budgets. The priority was designing a simple solution that ensures young users can navigate the platform independently, while parents maintain an administrative overview.\n\nDeveloped over four weeks, this full stack application uses a task and reward structure, mirroring real world financial transactions. The playful yet functional visual design makes budgeting tangible, and transforms routine household tasks into meaningful learning opportunities.",
     image: "/images/projects/money-monsters/logo.webp",

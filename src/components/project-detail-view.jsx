@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLink, ArrowLeft, Pencil, Github, Globe } from "lucide-react";
 import PhotoGallery from "@/components/photo-gallery";
+import PhotoSections from "@/components/photo-sections";
 
 function isStreamableUrl(url) {
   return url.includes("streamable.com");
@@ -92,17 +93,56 @@ export default function ProjectDetailView({ project, session, slug }) {
           </CardHeader>
 
           <CardContent className="space-y-8">
-            {/* About */}
-            <div>
-              <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
-                About the Project
-              </h3>
-              <div className="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed space-y-4">
-                {project.description.split("\n\n").map((paragraph, i) => (
-                  <p key={i}>{paragraph}</p>
+            {/* Case Study Sections — structured content with inline photos */}
+            {project.sections && project.sections.length > 0 ? (
+              <div className="space-y-10">
+                {project.sections.map((section, i) => (
+                  <div key={i}>
+                    <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
+                      {section.heading}
+                    </h3>
+                    <div className="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed space-y-4">
+                      {section.body.split("\n\n").map((paragraph, j) => (
+                        <p key={j}>{paragraph}</p>
+                      ))}
+                    </div>
+                    {section.photos && section.photos.length > 0 && (
+                      <div className="mt-4">
+                        <PhotoGallery photos={section.photos} title={section.heading} />
+                      </div>
+                    )}
+                  </div>
                 ))}
               </div>
-            </div>
+            ) : (
+              <>
+                {/* About */}
+                <div>
+                  <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
+                    About the Project
+                  </h3>
+                  <div className="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed space-y-4">
+                    {project.description.split("\n\n").map((paragraph, i) => (
+                      <p key={i}>{paragraph}</p>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Photos */}
+                {project.photos && project.photos.length > 0 && (
+                  <div>
+                    <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
+                      Photos
+                    </h3>
+                    {project.photos.some((p) => typeof p === "object" && p.section) ? (
+                      <PhotoSections photos={project.photos} title={project.title} />
+                    ) : (
+                      <PhotoGallery photos={project.photos} title={project.title} />
+                    )}
+                  </div>
+                )}
+              </>
+            )}
 
             {/* Technologies */}
             <div>
@@ -117,16 +157,6 @@ export default function ProjectDetailView({ project, session, slug }) {
                 ))}
               </div>
             </div>
-
-            {/* Photos */}
-            {project.photos && project.photos.length > 0 && (
-              <div>
-                <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
-                  Photos
-                </h3>
-                <PhotoGallery photos={project.photos} title={project.title} />
-              </div>
-            )}
 
             {/* Videos */}
             {project.videos && project.videos.length > 0 && (

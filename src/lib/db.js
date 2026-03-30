@@ -16,6 +16,7 @@ function mapProject(row) {
     videos: row.videos ?? [],
     links: row.links ?? [],
     caseStudy: row.case_study ?? false,
+    sections: row.sections ?? [],
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };
@@ -40,13 +41,14 @@ export async function ensureProjectsTable() {
   await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS videos jsonb DEFAULT '[]'::jsonb`;
   await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS links jsonb DEFAULT '[]'::jsonb`;
   await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS case_study boolean NOT NULL DEFAULT false`;
+  await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS sections jsonb DEFAULT '[]'::jsonb`;
 }
 
 export async function seedProjectsTable(seed) {
   for (const item of seed) {
     await sql`
-      INSERT INTO projects (title, description, image, link, keywords, logo, photos, videos, links, case_study)
-      VALUES (${item.title}, ${item.description}, ${item.image}, ${item.link}, ${JSON.stringify(item.keywords)}, ${item.logo || ""}, ${JSON.stringify(item.photos || [])}, ${JSON.stringify(item.videos || [])}, ${JSON.stringify(item.links || [])}, ${item.caseStudy ?? false})
+      INSERT INTO projects (title, description, image, link, keywords, logo, photos, videos, links, case_study, sections)
+      VALUES (${item.title}, ${item.description}, ${item.image}, ${item.link}, ${JSON.stringify(item.keywords)}, ${item.logo || ""}, ${JSON.stringify(item.photos || [])}, ${JSON.stringify(item.videos || [])}, ${JSON.stringify(item.links || [])}, ${item.caseStudy ?? false}, ${JSON.stringify(item.sections || [])})
       ON CONFLICT DO NOTHING
     `;
   }
@@ -64,8 +66,8 @@ export async function getProjectById(id) {
 
 export async function insertProject(data) {
   const [row] = await sql`
-    INSERT INTO projects (title, description, image, link, keywords, logo, photos, videos, links, case_study)
-    VALUES (${data.title}, ${data.description}, ${data.image}, ${data.link}, ${JSON.stringify(data.keywords)}, ${data.logo || ""}, ${JSON.stringify(data.photos || [])}, ${JSON.stringify(data.videos || [])}, ${JSON.stringify(data.links || [])}, ${data.caseStudy ?? false})
+    INSERT INTO projects (title, description, image, link, keywords, logo, photos, videos, links, case_study, sections)
+    VALUES (${data.title}, ${data.description}, ${data.image}, ${data.link}, ${JSON.stringify(data.keywords)}, ${data.logo || ""}, ${JSON.stringify(data.photos || [])}, ${JSON.stringify(data.videos || [])}, ${JSON.stringify(data.links || [])}, ${data.caseStudy ?? false}, ${JSON.stringify(data.sections || [])})
     RETURNING *
   `;
   return mapProject(row);
@@ -114,6 +116,10 @@ export async function updateProject(id, updates) {
   if (updates.caseStudy !== undefined) {
     fields.push(`case_study = $${fields.length + 1}`);
     values.push(updates.caseStudy);
+  }
+  if (updates.sections !== undefined) {
+    fields.push(`sections = $${fields.length + 1}`);
+    values.push(JSON.stringify(updates.sections));
   }
 
   if (fields.length === 0) {

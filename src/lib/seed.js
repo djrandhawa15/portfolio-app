@@ -1,3 +1,5 @@
+import { ensureProjectsTable, seedProjectsTable, deleteAllProjects } from "./db.js";
+
 const seedData = [
   {
     title: "Jargon",

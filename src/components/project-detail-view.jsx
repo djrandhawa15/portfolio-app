@@ -89,6 +89,13 @@ export default function ProjectDetailView({ project, session, slug }) {
                   </a>
                 </Button>
               )}
+              {project.demoNote && (
+                <div className="rounded-lg border border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/30 px-4 py-3 text-sm text-amber-800 dark:text-amber-300 space-y-1">
+                  {project.demoNote.split("\n").map((line, i) => (
+                    <p key={i}>{line}</p>
+                  ))}
+                </div>
+              )}
             </div>
           </CardHeader>
 

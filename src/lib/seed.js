@@ -75,7 +75,7 @@ const seedData = [
     videos: [],
     links: [
       { label: "Live Demo", url: "https://srp.builtbyrobyn.com/" },
-      { label: "GitHub", url: "https://github.com/IDSP-Strata-Reserve-Planning" },
+      { label: "GitHub", url: "https://github.com/IDSP-Strata-Reserve-Planning", private: true },
     ],
     demoNote: "This demo is completely detached from the production application and contains sample data only.\n\nAdmin: admin@admin.com\nClient: client@client.com\nPassword: Test1234!",
     caseStudy: true,

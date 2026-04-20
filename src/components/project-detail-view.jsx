@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExternalLink, ArrowLeft, Pencil, Github, Globe } from "lucide-react";
+import { ExternalLink, ArrowLeft, Pencil, Github, Globe, Lock } from "lucide-react";
 import PhotoGallery from "@/components/photo-gallery";
 import PhotoSections from "@/components/photo-sections";
 
@@ -71,6 +71,14 @@ export default function ProjectDetailView({ project, session, slug }) {
                   {project.links.map((link, i) => {
                     const isGithub = link.url.includes("github.com");
                     const Icon = isGithub ? Github : Globe;
+                    if (link.private) {
+                      return (
+                        <Button key={i} size="sm" variant="outline" disabled className="opacity-60 cursor-not-allowed">
+                          <Lock className="w-4 h-4 mr-2" />
+                          Private Repo
+                        </Button>
+                      );
+                    }
                     return (
                       <Button key={i} asChild size="sm" variant={i === 0 ? "default" : "outline"}>
                         <a href={link.url} target="_blank" rel="noreferrer">

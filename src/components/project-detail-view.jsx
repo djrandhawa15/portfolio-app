@@ -118,6 +118,22 @@ export default function ProjectDetailView({ project, session, slug }) {
                         <PhotoGallery photos={section.photos} title={section.heading} />
                       </div>
                     )}
+                    {section.documents && section.documents.length > 0 && (
+                      <div className="mt-4 space-y-6">
+                        {section.documents.map((doc, j) => (
+                          <div key={j}>
+                            <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">{doc.label}</p>
+                            <div className="rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800">
+                              <iframe
+                                src={doc.url}
+                                className="w-full h-[600px]"
+                                title={doc.label}
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

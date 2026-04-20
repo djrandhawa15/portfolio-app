@@ -93,6 +93,10 @@ const seedData = [
       {
         heading: "Research & Discovery",
         body: `The project began with detailed user personas representing each primary user type, capturing demographics, daily workflows, and the specific value the platform would deliver. These informed the creation of user flow diagrams for all four roles, mapping every interaction from login through to task completion — establishing clear navigation structures, permission boundaries, and feature priorities early on.`,
+        documents: [
+          { url: "/images/projects/srp/persona-margaret-treasurer.pdf", label: "User Persona — Margaret (Treasurer)" },
+          { url: "/images/projects/srp/persona-kevin-maintenance.pdf", label: "User Persona — Kevin (Maintenance)" },
+        ],
         photos: [
           { url: "/images/projects/srp/admin-user-flow.webp", caption: "Admin User Flow\n\nMapped the full Admin journey from login through to task completion, covering appointment management, inspection oversight, survey configuration, and document handling." },
           { url: "/images/projects/srp/client-user-flow.webp", caption: "Client User Flow\n\nDefined the Client experience from onboarding through to reviewing depreciation reports, including document access and appointment scheduling." },
